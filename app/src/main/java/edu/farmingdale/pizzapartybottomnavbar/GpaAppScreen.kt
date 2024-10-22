@@ -27,19 +27,18 @@ fun GpaAppScreen() {
     var grade2 by remember { mutableStateOf("") }
     var grade3 by remember { mutableStateOf("") }
 
-
     // Declare variables for GPA result and background color
     var gpa by remember { mutableStateOf("") }
     var backColor by remember { mutableStateOf(Color.Cyan) }
-    var btnLabel by remember { mutableStateOf("Calulate GPA") }
+    var btnLabel by remember { mutableStateOf("Compute GPA") }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Cyan)
-        ,verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
+            .background(backColor),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
 
         TextField(
             value = grade1,
@@ -47,9 +46,8 @@ fun GpaAppScreen() {
             label = { Text("Course 1 Grade") },
             modifier = Modifier
                 .padding(bottom = 16.dp),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-
-            )
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
 
         TextField(
             value = grade2,
@@ -57,10 +55,8 @@ fun GpaAppScreen() {
             label = { Text("Course 2 Grade") },
             modifier = Modifier
                 .padding(bottom = 16.dp),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-
-            )
-
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
 
         TextField(
             value = grade3,
@@ -68,13 +64,11 @@ fun GpaAppScreen() {
             label = { Text("Course 3 Grade") },
             modifier = Modifier
                 .padding(bottom = 16.dp),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-
-            )
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+        )
 
         Button(onClick = {
             if (btnLabel == "Compute GPA") {
-
                 val gpaVal = calGPA(grade1, grade2, grade3)
                 if (gpaVal != null) {
                     gpa = gpaVal.toString()
@@ -90,30 +84,34 @@ fun GpaAppScreen() {
                     gpa = "Invalid input"
                 }
             } else {
-                // Reset all value to none
                 grade1 = ""
                 grade2 = ""
                 grade3 = ""
                 gpa = ""
-                backColor = Color.White
+                backColor = Color.Cyan
                 btnLabel = "Compute GPA"
             }
-        }, modifier = Modifier.padding(top = 56.dp)) {
+        }, modifier = Modifier.padding(top = 16.dp)) {
             Text(btnLabel)
         }
 
-
         if (gpa.isNotEmpty()) {
-            Text(text = "GPA: $gpa")
+            Text(text = "GPA: $gpa", modifier = Modifier.padding(top = 16.dp))
         }
 
-
+        Button(onClick = {
+            grade1 = ""
+            grade2 = ""
+            grade3 = ""
+            gpa = ""
+            backColor = Color.Cyan
+        }, modifier = Modifier.padding(top = 16.dp)) {
+            Text("Clear")
+        }
     }
 }
-
 
 fun calGPA(grade1: String, grade2: String, grade3: String): Double {
     val grades = listOf(grade1.toDouble(), grade2.toDouble(), grade3.toDouble())
     return grades.average()
 }
-
