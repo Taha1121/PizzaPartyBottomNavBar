@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.sp
 fun Screen3() {
     var sliderValue by remember { mutableStateOf(0.5f) }
     var chkd by remember { mutableStateOf(true) }
-
+    var brushColor = arrayOf(0.0f to Color.White, 0.2f to Color.LightGray, 1f to Color.White)
 
     val context = LocalContext.current
     Column ( modifier = Modifier.padding(horizontal = 20.dp).fillMaxSize(),
