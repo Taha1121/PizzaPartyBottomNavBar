@@ -1,9 +1,13 @@
-package edu.farmingdale.pizzapartybottomnavbar
+import edu.farmingdale.pizzapartybottomnavbar.PizzaPartyScreen
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import edu.farmingdale.pizzapartybottomnavbar.BottomNavigationItems
+import edu.farmingdale.pizzapartybottomnavbar.GpaAppScreen
+import edu.farmingdale.pizzapartybottomnavbar.Screen3
+import edu.farmingdale.pizzapartybottomnavbar.SplashScreen
 
 @Composable
 fun NavigationGraph(navController: NavHostController, onBottomBarVisibilityChanged: (Boolean) -> Unit) {
@@ -14,7 +18,7 @@ fun NavigationGraph(navController: NavHostController, onBottomBarVisibilityChang
         }
         composable(BottomNavigationItems.PizzaScreen.route) {
             onBottomBarVisibilityChanged(true)
-           PizzaPartyScreen()
+            PizzaPartyScreen()
         }
         composable(BottomNavigationItems.GpaAppScreen.route) {
             onBottomBarVisibilityChanged(true)
@@ -26,6 +30,7 @@ fun NavigationGraph(navController: NavHostController, onBottomBarVisibilityChang
         }
     }
 }
+
 
 // ToDo 8: This is the homework:
 // add a drawer navigation as described in drawable drawermenu.png
